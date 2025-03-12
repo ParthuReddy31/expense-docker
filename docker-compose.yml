@@ -1,0 +1,34 @@
+networks:
+  expense: 
+    driver: bridge
+
+volumes:
+  mysql:
+
+services:
+  mysql:
+    image: mysql:v1
+    networks:
+    - expense
+    container_name: mysql
+    volumes:
+    - mysql:/var/lib/mysql
+
+  backend:
+    image: backend:v1
+    command: sh -c "sleep 15 && node /opt/backend/index.js"
+    networks:
+    - expense
+    container_name: backend
+    depends_on: 
+    - mysql
+  
+  frontend:
+    image: frontend:v1
+    ports:
+      - 80:80
+    networks:
+      - expense
+    container_name: backend
+    depends_on: 
+    - backend
