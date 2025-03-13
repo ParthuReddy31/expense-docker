@@ -29,6 +29,6 @@ services:
       - 80:80
     networks:
       - expense
-    container_name: backend
+    container_name: frontend
     depends_on:
       - backend
