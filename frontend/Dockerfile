@@ -2,6 +2,7 @@
 FROM nginx:stable-alpine3.20-perl
 RUN rm -rf /usr/share/nginx/html/index.html
 RUN rm -rf /etc/nginx/nginx.conf
+RUN rm -rf /etc/nginx/conf.d/default.conf
 
 # here setting up the container with no root access
 RUN mkdir -p /var/cache/nginx/client_temp && \
